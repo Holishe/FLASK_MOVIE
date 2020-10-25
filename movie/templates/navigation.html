@@ -1,0 +1,13 @@
+<nav id="nav">
+  <img id="logo" src="" />
+
+  <h2 id="nav-header">
+    {% if 'username' in session %} Hello, {{ session['username'] }} {%
+    endif %}
+  </h2>
+  <a class="btn-nav" href="{{ url_for('movies_bp.print_all_movies') }}">broswer movie</a>
+  <a class="btn-nav" href="{{ url_for('movies_bp.print_movies_by_search') }}">search</a>
+  <a class="btn-nav" href="{{ url_for('authentication_bp.register') }}">Register</a>
+  <a class="btn-nav" href="{{ url_for('authentication_bp.login') }}">Login</a>
+  <a class="btn-nav" href="{{ url_for('authentication_bp.logout') }}">Logout</a>
+</nav>

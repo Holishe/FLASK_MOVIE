@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <main id="main">
+        <header id="article-header">
+            <h1>{{ 'A Movie details' }}</h1>
+        </header>
+
+        <br><br>
+        <div id="amovie">
+            <br>
+            <a href="{{url_for('movies_bp.print_alone_movie',moviename=amovie['title'])}}"><h2>{{amovie["title"]}}</h2><span>&nbsp;&nbsp;&nbsp;&nbsp;{{amovie["year"]}}</span></a>
+            <!-- <img id="{{amovie['title'] }}" alt="movie text" width="100" height="200"> -->
+            <p><b>Genre: &nbsp;&nbsp;&nbsp;&nbsp;</b>{{amovie["genre"]}}</p>
+            <p><b>Director: &nbsp;</b>Director: {{amovie["director"] }}</p>
+            <p><b>Actor: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>{{amovie["actors"]}}</p>
+            <p><b>Description: </b>{{amovie["description"]}}</p>
+            <br>
+            <hr>
+        </div>
+        <br>
+        <div id="make-comment">
+            <h2>Make your comment</h2>
+            <form method="post">
+                {{form.csrd_token}}
+                {{form.comment()}}
+                {{form.submit()}}
+                {{form.moviename(value=amovie["title"])}}
+            </form>
+        </div>
+        <br>
+        <hr>
+        <br>
+        {%if comments|length !=0 %}
+        <div id="read-comment">
+            <h2>Comments: </h2>
+            {%for comment in comments%}
+                <div>
+                    <br>
+                    <span>{{comment.timestamp}}</span>
+                    <p>{{comment.review_text}}</p>
+                    <hr>
+                </div>
+            {%endfor%}
+        </div>
+        {%endif%}
+    </main>
+{% endblock %}
